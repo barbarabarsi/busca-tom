@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tom</title>
+        <style> 
+            @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+
+            * {
+                margin: 0;
+                border: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Mukta";
+
+            }
+
+            body{
+                height: 100vh;
+                width: 100vw;
+                background-color: rgb(39, 39, 39); /* For browsers that do not support gradients */
+                /* background-image: linear-gradient(to bottom right, rgb(0, 174, 255), rgb(110, 47, 255)); */
+                display: flex;
+                flex-direction: column;
+                justify-items: center;
+                align-items: center;
+            }
+
+            header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                height:8%;
+                width: 100%;
+                background-color: rgb(50,50,50);
+            }
+
+            #titulo{
+                color: white;
+                font-size: 20px;
+                padding-left: 50px;
+            }
+
+            nav{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                width: 20%;
+                height: 100%;
+                align-items: center;
+                padding-right: 50px;
+            }
+
+            a:link {
+                color:white;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline; 
+            }
+
+            .main{
+                height: 100%;
+                width: 100%;
+                font-size: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items:center;
+                justify-content: space-around;
+            }
+
+            .etc{
+                height: 80%;
+                width: 80%;
+                background: rgb(56, 56, 56);
+                /* background: rgba(255, 255, 255, 0.4);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 1); */
+                display: flex;
+                flex-direction: row; 
+                justify-content: space-evenly;
+                align-items: center;
+                border-radius: 10px;
+            }
+
+            #link, span{
+                color: white;
+                text-align: center;
+                align-content:center;
+                justify-content:center;
+            }
+
+            #principal-text{
+                font-size: 40px;
+            }
+
+            form{
+                height: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            #link {
+                width: 70%;
+                background: transparent;
+                /* margin: 8px 0;  */
+                /* display: inline-block; */
+                border: none;
+                border-bottom: 1px solid rgb(255, 255, 255);
+                box-sizing: border-box;
+            }
+            
+            #link:focus{
+                outline: none;
+            }
+
+            a:visited {
+                color: white;
+            }
+            
+
+            #botao {
+                color:white;
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 1);
+                padding: 14px 40px;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+            }
+            
+
+            .img_result{
+                height: 400px;
+                width:400px;
+                overflow:hidden;
+            }
+
+            .cropped {
+                border-radius: 20px;
+                width: 360px; 
+                height: 360px; 
+                overflow: hidden;
+                position: relative;
+            }
+
+            .cropped img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+
+            #nome{
+                font-size:40px;
+            }
+
+            .text_result{
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .text_result p{
+                font-size:30px;
+                color: white;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <p id="titulo">Busca Tom</p>
+            <nav>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'sobre' %}">Sobre</a>
+            <a href=#>Colab</a>
+            </nav>
+        </header>
+        <div class="main">
+            <div class="etc">
+                {% if tom_maior %}
+                <div class="cropped">
+                    <img src="{{ imagem }}" id="capa">
+                </div>
+                <div class="text_result">
+                    <a href="{{ link }}" id="nome">{{ nome }}</a>
+                    <p>Tom maior: {{ tom_maior }} </p>
+                    <p>Tom menor: {{ tom_menor }}</p>
+                    <a  id="botao" href="{% url 'index' %}">Voltar</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

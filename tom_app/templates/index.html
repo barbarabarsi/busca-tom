@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom</title>
+    <style> 
+        @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+
+        * {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Mukta";
+
+        }
+
+        body{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgb(39, 39, 39); /* For browsers that do not support gradients */
+            /* background-image: linear-gradient(to bottom right, rgb(0, 174, 255), rgb(110, 47, 255)); */
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+        }
+
+        header{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height:8%;
+            width: 100%;
+            background-color: rgb(50,50,50);
+        }
+
+        #titulo{
+            color: white;
+            font-size: 20px;
+            padding-left: 50px;
+        }
+
+        nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 20%;
+            height: 100%;
+            align-items: center;
+            padding-right: 50px;
+        }
+
+        nav a:link {
+            color:white;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            transform: scale(1.1);
+        }
+
+        .main{
+            height: 100%;
+            width: 100%;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content: space-around;
+        }
+
+        .etc{
+            height: 80%;
+            width: 75%;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 3px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column; 
+            justify-content: space-evenly;
+            border-radius: 10px;
+            padding: 20px 60px;
+        }
+
+        #link, span{
+            color: white;
+            text-align: center;
+            align-content:center;
+            justify-content:center;
+        }
+
+        #principal-text{
+            font-size: 35px;
+        }
+
+        #extra-text{
+            font-size: 18px;
+        }
+
+        form{
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #link {
+            font-size: 18px;
+            width: 70%;
+            background: transparent;
+            /* margin: 8px 0;  */
+            /* display: inline-block; */
+            border: none;
+            border-bottom: 1px solid rgb(255, 255, 255);
+            box-sizing: border-box;
+        }
+        
+        #link:focus{
+            outline: none;
+        }
+
+        a:visited {
+            color: white;
+        }
+        
+        #botao {
+            font-size:18px;
+            color:white;
+            width: 20%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+
+        #botao:hover{
+            background: rgba(255, 255, 255, 0.2);
+            transition: 0.3s ease-in-out;
+        }
+
+        .resultado{
+            display: flex;
+            flex-direction: row; 
+            justify-content: space-between;
+        }
+
+        #aqui:focus{
+            outline:rgb(255, 255, 255);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <p id="titulo">Busca Tom</p>
+        <nav>
+          <a href=#>Home</a>
+          <a href="{% url 'sobre' %}">Sobre</a>
+          <a href=#>Colab</a>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="etc">
+            <span id="principal-text">Digite abaixo o link da música que deseja descobrir o tom!</span> 
+            <span id="extra-text">Insira apenas links de vídeos do Youtube. Para um melhor funcionamento, evite selecionar vídeos com sons diferentes<br> da música 
+            (como clipes e apresentações ao vivo). Algumas músicas podem retornar resultados imprecisos.<br> 
+            Para saber mais, clique <a id="aqui" href="{% url 'sobre' %}">aqui</a>.</span>
+            <form method="post" action="{% url 'index' %}">
+                {% csrf_token %}
+                <input type="text" id="link" placeholder="Link" name="{{form.url.name}}" value="{{form.url.value|default_if_none:''}}">
+                <button type="submit" id="botao">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

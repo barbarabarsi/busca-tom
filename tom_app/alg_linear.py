@@ -1,0 +1,30 @@
+import numpy as np
+import math
+
+def internalProduct(x, y):
+    return np.inner(x, y)
+
+def norm(x):
+    escalar = internalProduct(x, x)
+    return math.sqrt(escalar)
+
+def distVector(x, y):
+    return np.subtract(x, y)
+
+def distance(x, y):
+    return norm(distVector(x, y))
+
+def normalize(x):
+    return np.divide(x, norm(x))
+
+def findLambda(x, y):
+    return np.inner(y, normalize(x))
+
+def project(x, y):
+    return np.multiply(findLambda(x, y), normalize(x))
+
+def distanceToProjection(x, y):
+    return norm(distVector(x, project(x, y)))
+
+def cosine(x, y):
+    return internalProduct(x, y) / (norm(x) * norm(y))
