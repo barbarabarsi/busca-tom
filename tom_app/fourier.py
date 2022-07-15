@@ -91,8 +91,7 @@ def faz_vetor(link):
     for i in range(0,len(freq)):   
         if freq[i]>130 and freq[i]<32000:
             temp = Etapas(freq = freq[i], alt= fft_spectrum_abs[i])
-            if temp.alt>500:
-                inicial.append(temp)
+            inicial.append(temp)
     inicial.sort(key=lambda x:x.alt, reverse=True)
     
     gaps = faz_gaps()
@@ -113,9 +112,6 @@ def busca_tom(link):
 
     for escala in matriz_escalas:
         cossenos.append(cosine(vetor_amp,escala))
-
-    for cosseno in cossenos:
-        print(cosseno)
     
     index_tom = cossenos.index(max(cossenos))
 
