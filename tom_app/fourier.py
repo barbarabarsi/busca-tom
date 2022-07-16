@@ -112,7 +112,7 @@ def busca_tom(link):
 
     for escala in matriz_escalas:
         cossenos.append(cosine(vetor_amp,escala))
-    
+
     index_tom = cossenos.index(max(cossenos))
 
     if index_tom == 0:
